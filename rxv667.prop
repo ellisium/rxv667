@@ -1,0 +1,24 @@
+{
+    "modules"             : { 
+    "rxv667"              : {
+    "description"         : "IR control for rxv667 yamaha",
+    "version"             : "0.0.1",
+    "keywords": [
+      "yamaha",
+      "arduino",
+      "rxv667"
+    ],
+    "repository": {
+      "type": "git",
+      "url": "git+https://github.com/ellisium/rxv667.git"
+    },
+    "bugs": {
+      "url": "https://github.com/ellisium/rxv667/issues"
+    },
+    "license"             :"MIT",
+    "dependencies"        :{
+      "serialport"        :"1.7.4"
+    }
+    }
+  }
+}
