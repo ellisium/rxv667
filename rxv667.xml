@@ -1,8 +1,122 @@
-﻿<grammar version="1.0" xml:lang="fr-FR" mode="voice"  root="ruleYamaha" xmlns="http://www.w3.org/2001/06/grammar" tag-format="semantics/1.0">
-  <rule id="ruleYamaha" scope="public">
-    <example>Sarah lève le son?</example>
+<grammar version="1.0" xml:lang="fr-FR" mode="voice"  root="ruleRxv" xmlns="http://www.w3.org/2001/06/grammar" tag-format="semantics/1.0">
+  <rule id="ruleRxv" scope="public">
+    <example>Sarah allume</example>
     <tag>out.action=new Object(); </tag>
-    <item>Sarah</item> 
+    <item >Sarah</item>
+
+	<one-of>
+      <item>allume l'ampli<tag>out.action.cmd="power";out.action.index="1";</tag></item>
+      <item>étin l'ampli<tag>out.action.cmd="power";out.action.index="0";</tag></item>
+      <item>
+        <ruleref uri="#ruleCmdVolumeUp"/>
+        <tag>out.action = rules.ruleCmdVolumeUp;</tag>
+      </item>
+      <item>
+        <ruleref uri="#ruleCmdVolumeDown"/>
+        <tag>out.action = rules.ruleCmdVolumeDown;</tag>
+      </item>
+    </one-of>
+
     <tag>out.action._attributes.uri="http://127.0.0.1:8080/sarah/rxv667";</tag>
+  </rule>
+
+  <rule id="ruleCmdVolumeUp">
+    <example>Sarah monte le volume</example>
+    <tag>
+      out.action.cmd="volumeUp";
+    </tag>
+    <item repeat="0-1">
+    <one-of>
+      <item>monte</item>
+      <item>augmente</item>
+    </one-of>
+	</item>
+    <item>
+      <ruleref uri="#ruleSound"/>
+    </item>
+    <item repeat="0-1">
+      <one-of>
+      <item>
+        <ruleref uri="#ruleByTenPercent"/>
+      </item>
+      <item>
+        <ruleref uri="#ruleNumber"/>
+      </item>
+      </one-of>
+    </item>
+  </rule>
+
+  <rule id="ruleCmdVolumeUp">
+    <example>Sarah monte le volume</example>
+    <tag>
+      out.action.cmd="volumeDown";
+    </tag>
+    <item repeat="0-1">
+    <one-of>
+      <item>baisse</item>
+      <item>descend</item>
+      <item>diminu</item>
+     </one-of>
+	</item>
+    <item>
+      <ruleref uri="#ruleSound"/>
+    </item>
+    <item repeat="0-1">
+      <one-of>
+      <item>
+        <ruleref uri="#ruleByTenPercent"/>
+      </item>
+      <item>
+        <ruleref uri="#ruleNumber"/>
+      </item>
+      </one-of>
+    </item>
+  </rule>
+
+  <rule id="#ruleSound">
+    <example>le son</example>
+    <item repeat="0-1">
+    <one-of>
+	      <item>le son</item>
+	      <item>le volume</item>
+	      <item>la musique</item>	      
+    </one-of>
+    </item>
+  </rule>
+
+  <rule id="#ruleByTenPercent">
+    <example>de 10%</example>
+    <item repeat="0-1">
+    <one-of>
+      <item>de 10%<tag>out.action.lvl=10;</tag></item>
+      <item>de 20%<tag>out.action.lvl=20;</tag></item>
+      <item>de 30%<tag>out.action.lvl=30;</tag></item>
+      <item>de 40%<tag>out.action.lvl=40;</tag></item>
+      <item>de 50%<tag>out.action.lvl=50;</tag></item>
+      <item>de 60%<tag>out.action.lvl=60;</tag></item>
+      <item>de 70%<tag>out.action.lvl=70;</tag></item>
+      <item>de 80%<tag>out.action.lvl=80;</tag></item>
+      <item>de 90%<tag>out.action.lvl=90;</tag></item>
+      <item>de 100%<tag>out.action.lvl=100;</tag></item>
+    </one-of>
+    </item>
+  </rule>
+
+  <rule id="#ruleNumber">
+    <example>de trois</example>
+    <item repeat="0-1">de
+    <one-of>
+      <item>un<tag>out.action.lvlInt=1;</tag></item>
+      <item>deux<tag>out.action.lvlInt=2;</tag></item>
+      <item>trois<tag>out.action.lvlInt=3;</tag></item>
+      <item>quatre<tag>out.action.lvlInt=4;</tag></item>
+      <item>cinq<tag>out.action.lvlInt=5;</tag></item>
+      <item>six<tag>out.action.lvlInt=6;</tag></item>
+      <item>sept<tag>out.action.lvlInt=7;</tag></item>
+      <item>huit<tag>out.action.lvlInt=8;</tag></item>
+      <item>neuf<tag>out.action.lvlInt=9;</tag></item>
+      <item>dix<tag>out.action.lvlInt=10;</tag></item>
+    </one-of>
+    </item>
   </rule>
 </grammar>
