@@ -134,6 +134,16 @@
 	<item>de</item>
 	<tag>out.action=new Object();</tag>
     <one-of>
+    	<item>1%<tag>out.action.lvl=10;</tag></item>
+    	<item>2%<tag>out.action.lvl=10;</tag></item>
+    	<item>3%<tag>out.action.lvl=10;</tag></item>
+    	<item>4%<tag>out.action.lvl=10;</tag></item>
+    	<item>5%<tag>out.action.lvl=10;</tag></item>
+    	<item>6%<tag>out.action.lvl=10;</tag></item>
+    	<item>7%<tag>out.action.lvl=10;</tag></item>
+    	<item>8%<tag>out.action.lvl=10;</tag></item>
+    	<item>9%<tag>out.action.lvl=10;</tag></item>
+
       <item>10%<tag>out.action.lvl=10;</tag></item>
       <item>20%<tag>out.action.lvl=20;</tag></item>
       <item>30%<tag>out.action.lvl=30;</tag></item>
@@ -151,7 +161,7 @@
   	<item>de</item>
 	  <tag>out.action=new Object();</tag>
       <one-of>
-      <item repeat="0-1"><ruleref uri="#ruleNumber"/></item>
+      <item repeat="0-1"><ruleref uri="#ruleNumber"/> <tag>out.action=rules.latest();</tag></item>
     </one-of>
   </rule>
 
@@ -221,9 +231,6 @@
       <item>musique<tag>out.action.cmd="cd";</tag></item>
       <item>radio<tag>out.action.cmd="radio";</tag></item>
       <item>dock<tag>out.action.cmd="dock";</tag></item>
-      <item>xbmc<tag>out.action.cmd="av4";</tag></item>
-      <item>kodi<tag>out.action.cmd="av4";</tag></item>
-      <item>pchc<tag>out.action.cmd="av4";</tag></item>
       <item>av1<tag>out.action.cmd="av1";</tag></item>
       <item>av2<tag>out.action.cmd="av2";</tag></item>
       <item>av3<tag>out.action.cmd="av3";</tag></item>

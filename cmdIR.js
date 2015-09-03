@@ -144,7 +144,7 @@ module.exports={
 	},
 	phono:{
 		code:'0xFE8052AD', 
-		vocals:["entrée phono"; "phono", "source phono"]
+		vocals:["entrée phono", "phono", "source phono"]
 	},
 	av1:{
 		code:'0x5EA128D7', 
@@ -168,7 +168,7 @@ module.exports={
 		code:'0x5EA19A64', 
 		vocals:{
 			req:[], 
-			res:["av4", "source av4", "xbmc", "kodi"]
+			res:["av4", "source av4"]
 		}
 	},
 	av5:{
@@ -285,7 +285,7 @@ module.exports={
 	int0:{
 		code:'0xFE809A65', 
 		vocals:["zéro"]
-	}
+	},
 	ent:{
 		code:'0xFE80DA25', 
 		vocals:["enter"]
