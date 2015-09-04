@@ -3,6 +3,10 @@ module.exports={
 		code:'0x7E8154AB', 
 		vocals:["j'éteins l'ampli de suite", "de suite", "bien sur"]
 	},
+	volumePercent:{ 
+		code:'',
+		vocals:["je règle le volume", "je règle le son"]
+	},
 	volumeUp:{
 		code:'0x5EA158A7', 
 		vocals:["le son est monté", "le son a été augmenté", "tout de suite", "bien sur", "le volume est monté"]
@@ -168,7 +172,7 @@ module.exports={
 		code:'0x5EA19A64', 
 		vocals:{
 			req:[], 
-			res:["av4", "source av4"]
+			res:["av4", "source av4", "xbmc", "kodi"]
 		}
 	},
 	av5:{

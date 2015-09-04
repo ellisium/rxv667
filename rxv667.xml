@@ -6,6 +6,11 @@
       <item>allumé<tag>out.action.cmd="power"; out.action.index="1";</tag></item>
       <item>étin<tag>out.action.cmd="power"; out.action.index="0";</tag></item>
       <item >
+      	<ruleref uri="#ruleVolumePercent"/>
+      	<tag>out.action=rules.latest();</tag>
+      	<tag>out.action.cmd="volumePercent";</tag>
+      </item>
+      <item>
       	<ruleref uri="#ruleCmdVolumeUp"/>
       	<tag>out.action=rules.latest();</tag>
       	<tag>out.action.cmd="volumeUp";</tag>
@@ -130,19 +135,46 @@
   </one-of>
 </rule>
 
-<rule id="ruleByTenPercent">
-	<item>de</item>
+<rule id="ruleVolumePercent" scope="public">
+  <one-of>
+   	<item>volume</item>
+	<item>son</item>
+	<item>film</item>
+	<item>musique</item>
+  </one-of>
+  <item repeat="0-1"><ruleref uri="#ruleByTenPercent"/></item>
+</rule>
+
+<rule id="ruleByTenPercent" scope="public">
+	  <tag>out.action=new Object();</tag>
+	  <one-of>
+	  	<item> </item>
+  		<item>de</item>
+  		<item>a</item>
+  		</one-of>
+      <item repeat="0-1"><ruleref uri="#rulePercent"/> <tag>out.action=rules.latest();</tag></item>
+</rule>
+
+  <rule id="ruleByNumber" scope="public">
+  	<item>de</item>
+	  <tag>out.action=new Object();</tag>
+      <one-of>
+      <item repeat="0-1"><ruleref uri="#ruleNumber"/> <tag>out.action=rules.latest();</tag></item>
+    </one-of>
+  </rule>
+
+<rule id="rulePercent" scope="public">
 	<tag>out.action=new Object();</tag>
     <one-of>
-    	<item>1%<tag>out.action.lvl=10;</tag></item>
-    	<item>2%<tag>out.action.lvl=10;</tag></item>
-    	<item>3%<tag>out.action.lvl=10;</tag></item>
-    	<item>4%<tag>out.action.lvl=10;</tag></item>
-    	<item>5%<tag>out.action.lvl=10;</tag></item>
-    	<item>6%<tag>out.action.lvl=10;</tag></item>
-    	<item>7%<tag>out.action.lvl=10;</tag></item>
-    	<item>8%<tag>out.action.lvl=10;</tag></item>
-    	<item>9%<tag>out.action.lvl=10;</tag></item>
+    	<item>1%<tag>out.action.lvl=1;</tag></item>
+    	<item>2%<tag>out.action.lvl=2;</tag></item>
+    	<item>3%<tag>out.action.lvl=3;</tag></item>
+    	<item>4%<tag>out.action.lvl=4;</tag></item>
+    	<item>5%<tag>out.action.lvl=5;</tag></item>
+    	<item>6%<tag>out.action.lvl=6;</tag></item>
+    	<item>7%<tag>out.action.lvl=7;</tag></item>
+    	<item>8%<tag>out.action.lvl=8;</tag></item>
+    	<item>9%<tag>out.action.lvl=9;</tag></item>
 
       <item>10%<tag>out.action.lvl=10;</tag></item>
       <item>20%<tag>out.action.lvl=20;</tag></item>
@@ -157,15 +189,7 @@
     </one-of>
   </rule>
 
-  <rule id="ruleByNumber">
-  	<item>de</item>
-	  <tag>out.action=new Object();</tag>
-      <one-of>
-      <item repeat="0-1"><ruleref uri="#ruleNumber"/> <tag>out.action=rules.latest();</tag></item>
-    </one-of>
-  </rule>
-
-  <rule id="ruleNumber">
+  <rule id="ruleNumber" scope="public">
 	  <tag>out.action=new Object();</tag>
       <one-of>
       <item>zéro<tag>out.action.int=0;</tag></item>
@@ -231,6 +255,9 @@
       <item>musique<tag>out.action.cmd="cd";</tag></item>
       <item>radio<tag>out.action.cmd="radio";</tag></item>
       <item>dock<tag>out.action.cmd="dock";</tag></item>
+      <item>xbmc<tag>out.action.cmd="av4";</tag></item>
+      <item>kodi<tag>out.action.cmd="av4";</tag></item>
+      <item>pchc<tag>out.action.cmd="av4";</tag></item>
       <item>av1<tag>out.action.cmd="av1";</tag></item>
       <item>av2<tag>out.action.cmd="av2";</tag></item>
       <item>av3<tag>out.action.cmd="av3";</tag></item>
