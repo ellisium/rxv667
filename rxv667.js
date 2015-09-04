@@ -3,7 +3,7 @@ SerialPort = serialPort.SerialPort,
 settings=require(__dirname+"\\settings.json"),
 ir=require(__dirname+"\\cmdIR.js");
 
-var readyYamaha=true,
+var readyYamaha=false,
 volume=settings.volumeInitial;
 percent=settings.min-settings.max, 
 percentInitial=getPercent(settings.volumeInitial);
