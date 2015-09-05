@@ -6,6 +6,8 @@
 	"irDelay":200,
 	"min":-80,
 	"max":16,
-	"autoOn":false,
-	"seuilTTS": -15
+	"autoOn":true,
+	"seuilTTS": -15,
+	"sleep":0,
+	"sleepStep":30
 }
