@@ -1,7 +1,8 @@
 var serialPort = require("serialport"),
 SerialPort = serialPort.SerialPort,
 settings=require(__dirname+"\\settings.json"),
-ir=require(__dirname+"\\cmdIR.js");
+ir=require(__dirname+"\\cmdIR.js"),
+fs=require('fs');
 
 var readyYamaha=false,
 volume=settings.volumeInitial;
@@ -50,53 +51,54 @@ function volumeChange(code, num, positive){
 }
 
 exports.action = function(params, next){
-	console.log(params)
 	if(readyYamaha){
 	  if(params.hasOwnProperty('cmd')){
 	  	var item=ir[params.cmd],
 			code=item.code,
 			res=item.vocals,
 			choix = Math.floor(Math.random() * res.length); 
-		if(params.cmd==='volumePercent'){
-			var lvl=parseInt(params.lvl),
-	  			val=(percent*lvl)/100,
-	  			value=Math.round(settings.min+Math.abs(val));
-	  			if(value<volume){
-	  				code=ir.volumeDown.code;
-	  				volumeChange(code, value-volume, false);
-	  			}else{
-					code=ir.volumeUp.code;
-					volumeChange(code, value-volume, true);
-	  			}
-	  			console.log(diff, value, value-volume, volume)
-		}
-	  	if(params.cmd ==='volumeUp' || params.cmd ==='volumeDown'){
-	  		if(params.cmd==='volumeUp'){p=true;}
-  			if(params.cmd==='volumeDown'){p=false;}
-	  		if(params.hasOwnProperty('int')){
-	  			var p=undefined;	  			
-	  			volumeChange(code, parseInt(params.int), p);
-	  		}
-	  		if(params.hasOwnProperty('lvl')){
-	  			var lvl=parseInt(params.lvl),
-	  			val=(percent*lvl)/100;
-	  			if(settings.min <0){
-	  				var diff = volume - (val-settings.min);
-	  			}else{
-	  				var diff = volume - val;
-	  			}
-	  			volumeChange(code, Math.round(val), p);
-	  		}
-	  		if(!item.hasOwnProperty('off')){
-		  		if(volume<settings.seuilTTS){
-		  				next({tts:res[choix]});
-		  		}else{
-		  				console.log(res[choix])
-		  				next();
-		  		}
-			}else{
-				next();
+
+	  	if(params.cmd ==='volumeUp' || params.cmd ==='volumeDown' || params.cmd==='volumePercent'){
+	  		if(params.cmd==='volumePercent'){
+				var lvl=parseInt(params.lvl),
+		  			val=(percent*lvl)/100,
+		  			value=Math.round(settings.min+Math.abs(val));
+		  			if(value<volume){
+		  				code=ir.volumeDown.code;
+		  				volumeChange(code, value-volume, false);
+		  			}else{
+						code=ir.volumeUp.code;
+						volumeChange(code, value-volume, true);
+		  			}
 			}
+			if(params.cmd ==='volumeUp' || params.cmd ==='volumeDown'){
+		  		if(params.cmd==='volumeUp'){p=true;}
+	  			if(params.cmd==='volumeDown'){p=false;}
+		  		if(params.hasOwnProperty('int')){
+		  			var p=undefined;	  			
+		  			volumeChange(code, parseInt(params.int), p);
+		  		}
+		  		if(params.hasOwnProperty('lvl')){
+		  			var lvl=parseInt(params.lvl),
+		  			val=(percent*lvl)/100;
+		  			if(settings.min <0){
+		  				var diff = volume - (val-settings.min);
+		  			}else{
+		  				var diff = volume - val;
+		  			}
+		  			volumeChange(code, Math.round(val), p);
+		  		}
+			}
+				if(!item.hasOwnProperty('off')){
+			  		if(volume<settings.seuilTTS){
+			  			next({tts:res[choix]});
+			  		}else{
+			  			console.log(res[choix])
+			  			next();
+			  		}
+				}else{
+					next();
+				}
 	  	}else{
 			yamaha.write(new Buffer(code+'\n'),function(){
 		  		if(!item.hasOwnProperty('off')){

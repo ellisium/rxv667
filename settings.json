@@ -1,13 +1,21 @@
 {
-	"port":"COM3",
-	"baudrate":115200,
-	"step":0.5,
-	"volumeInitial" :-20,
-	"irDelay":200,
-	"min":-80,
-	"max":16,
-	"autoOn":true,
+
+	"port": "COM3",
+
+	"baudrate": 115200,
+
+	"step": 0.5,
+
+	"volumeInitial": -20,
+
+	"irDelay": 200,
+
+	"min": -80,
+
+	"max": 16,
+
+	"autoOn": true,
+
 	"seuilTTS": -15,
-	"sleep":0,
-	"sleepStep":30
+
 }

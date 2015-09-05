@@ -49,7 +49,7 @@
       	<ruleref uri="#ruleCmdSource"/>
       	<tag>out.action=rules.latest();</tag>
       </item>
-      <item>veille<tag>out.action.cmd="sleep";</tag><ruleref uri="#ruleSleep"/><tag>out.action=rules.latest();</tag></item>
+      <item>veille<tag>out.action.cmd="sleep";</tag></item>
       <item>film<tag>out.action.cmd="movie";</tag></item>
       <item>musique<tag>out.action.cmd="musique";</tag></item>
       <item>améliore<tag>out.action.cmd="enhancer";</tag></item>
@@ -290,17 +290,7 @@
       </item>
     </one-of>
   </rule>
-<rule id="ruleSleep" scope="public">
-	  <tag>out.action=new Object();</tag>
-	  <one-of>
-	  	<item>120 minutes<tag>out.action.sleep="120";</tag></item>
-  		<item>90 minutes<tag>out.action.sleep="90";</tag></item>
-  		<item>60 minutes<tag>out.action.sleep="60";</tag></item>
-  		<item>30 minutes<tag>out.action.sleep="30";</tag></item>
-  		<item>off<tag>out.action.sleep="0";</tag></item>
-  		</one-of>
-      <item repeat="0-1"><ruleref uri="#rulePercent"/> <tag>out.action=rules.latest();</tag></item>
-</rule>
+
   <rule id="ruleCmdVAux" scope="public">
     <one-of>
       <item>vAux</item>
