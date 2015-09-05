@@ -16,6 +16,5 @@
 
 	"autoOn": true,
 
-	"seuilTTS": -15,
-
+	"seuilTTS": -15
 }
